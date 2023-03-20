@@ -2,18 +2,18 @@
 
 namespace GeekBrains\LevelTwo\Http\Actions\Posts;
 
+
 use GeekBrains\LevelTwo\Blog\Exceptions\HttpException\HttpException;
 use GeekBrains\LevelTwo\Blog\Exceptions\InvalidArgumentException;
-use GeekBrains\LevelTwo\Blog\Exceptions\PostException\PostNotFoundException;
 use GeekBrains\LevelTwo\Blog\Exceptions\UserException\UserNotFoundException;
 use GeekBrains\LevelTwo\Blog\Models\Post;
 use GeekBrains\LevelTwo\Blog\Repositories\Interface\PostsRepositoryInterface;
 use GeekBrains\LevelTwo\Blog\Repositories\Interface\UsersRepositoryInterface;
 use GeekBrains\LevelTwo\Blog\UUID;
 use GeekBrains\LevelTwo\Http\Actions\ActionInterface;
-use GeekBrains\LevelTwo\Http\ErrorResponse;
 use GeekBrains\LevelTwo\Http\Request;
 use GeekBrains\LevelTwo\Http\Response;
+use GeekBrains\LevelTwo\Http\ErrorResponse;
 use GeekBrains\LevelTwo\Http\SuccessfulResponse;
 
 class CreatePost implements ActionInterface
@@ -54,7 +54,8 @@ class CreatePost implements ActionInterface
         }
         $this->postsRepository->save($post);
         return new SuccessfulResponse([
-            'uuid' => (string)$newPostUuid
+            'uuid' => (string)$newPostUuid,
+            'author_uuid' => (string)$authorUuid,
         ]);
     }
 }
