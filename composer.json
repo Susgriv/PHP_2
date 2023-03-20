@@ -1,18 +1,27 @@
 {
-    "name": "geekbrains/leveltwo",
-    "autoload": {
-        "psr-4": {
-            "GeekBrains\\LevelTwo\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Grigoriy Suslov",
-            "email": "bandit474@yandex.ru"
-        }
-    ],
-    "require": {
-        "fakerphp/faker": "^1.21",
-        "roave/security-advisories": "dev-latest"
+  "name": "geekbrains/leveltwo",
+  "autoload": {
+    "psr-4": {
+      "GeekBrains\\LevelTwo\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "Grigory",
+      "email": "bandit474@yandex.ru"
+    }
+  ],
+  "require": {
+    "fakerphp/faker": "^1.20",
+    "ext-pdo": "*",
+    "symfony/polyfill-uuid": "^1.26",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "roave/security-advisories": "dev-latest"
+  },
+  "scripts": {
+    "test": "phpunit tests --testdox --colors"
+  }
 }

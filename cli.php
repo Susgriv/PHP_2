@@ -1,41 +1,33 @@
 <?php
 
-use GeekBrains\LevelTwo\Blog\Models\{Post, User, Comments};
-use GeekBrains\LevelTwo\Person\{Name, Person};
-use GeekBrains\LevelTwo\Blog\Repositories\InMemoryUsersRepository;
-use GeekBrains\LevelTwo\Blog\Exceptions\UserNotFoundException;
+use GeekBrains\LevelTwo\Blog\Repositories\UsersRepository\SqliteUsersRepository;
+use GeekBrains\LevelTwo\Blog\UUID;
+use GeekBrains\LevelTwo\Blog\Repositories\PostsRepository\SqlitePostsRepository;
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . "/vendor/autoload.php";
 
-$faker = Faker\Factory::create('ru_RU');
+//Создаём объект подключения к SQLite
+$connection = new PDO('sqlite:' . __DIR__ . '/blog.sqlite');
 
-$name = new Name($faker->firstName(), $faker->lastName());
-$user = new User(1, $name, 'Admin');
-$person = new Person($name, new DateTimeImmutable());
-$post = new Post(1, $person, $faker->title(), $faker->text(50));
-$comment = new Comments(1, $person, $post, $faker->text(50));
+$usersRepository = new SqliteUsersRepository($connection);
+$postsRepository = new SqlitePostsRepository($connection);
 
-switch ($argv[1]) {
-  case 'user':
-    print $user;
-    break;
-  case 'post':
-    print $post;
-    break;
-  case 'comment':
-    print $comment;
-    break;
+try {
+
+$user = $usersRepository->get(new UUID('3b697686-01bf-433a-bf17-53ce84cb987b'));
+
+$post = $postsRepository->get(new UUID('fb58c755-9413-4945-b1d7-b2bd1979ae34'));
+
+print_r($post);
+
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
+/*
+$command = new CreateUserCommand($usersRepository);
 
-//$userRepository = new InMemoryUsersRepository();
-//$userRepository->save($user);
-//$userRepository->save(clone $user);
-//
-//try {
-//  echo $userRepository->get(1);
-//  echo $userRepository->get(2);
-//  echo $userRepository->get(4);
-//
-//} catch (UserNotFoundException | Exception $e) {
-//  echo $e->getMessage();
-//}
+try {
+    $command->handle(Arguments::fromArgv($argv));
+} catch (Exception $e) {
+    echo $e->getMessage();
+}*/
