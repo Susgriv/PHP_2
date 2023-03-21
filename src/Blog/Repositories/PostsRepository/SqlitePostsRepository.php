@@ -14,11 +14,10 @@ use PDOStatement;
 
 class SqlitePostsRepository implements PostsRepositoryInterface
 {
-	private PDO $connection;
-
-	public function __construct(PDO $connection)
+	public function __construct(
+		private PDO $connection
+	)
 	{
-		$this->connection = $connection;
 	}
 
 	public function save(Post $post): void
@@ -29,7 +28,7 @@ class SqlitePostsRepository implements PostsRepositoryInterface
 		);
 		$statement->execute([
 			':uuid' => $post->getPost_uuid(),
-			':author_uuid' => $post->getAuthor()->uuid(),
+			':author_uuid' => $post->getAuthor(),
 			':title' => $post->getTitle(),
 			':text' => $post->getText(),
 		]);
