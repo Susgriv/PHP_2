@@ -54,7 +54,9 @@ class CreatePost implements ActionInterface
         }
         $this->postsRepository->save($post);
         return new SuccessfulResponse([
-            'uuid' => (string)$newPostUuid,
+            'post id' => (string)$newPostUuid,
+	        'author id' => (string)$authorUuid,
+
         ]);
     }
 }
