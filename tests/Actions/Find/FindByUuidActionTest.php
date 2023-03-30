@@ -1,6 +1,6 @@
 <?php
 
-namespace Actions;
+namespace Actions\Find;
 
 use GeekBrains\LevelTwo\Blog\Exceptions\PostException\PostNotFoundException;
 use GeekBrains\LevelTwo\Blog\Models\Post;
@@ -19,8 +19,7 @@ class FindByUuidActionTest extends TestCase
 	 * @preserveGlobalState disabled
 	 * @throws \JsonException
 	 */
-	// Тест, проверяющий, что будет возвращён неудачный ответ,
-	// если в запросе нет параметра username
+	// Тест, проверяющий, что будет возвращён неудачный ответ, если в запросе нет параметра username
 	public function testItReturnsErrorResponseIfNoUuidProvided(): void
 	{
 		// Создаём объект запроса вместо суперглобальных переменных передаём простые массивы

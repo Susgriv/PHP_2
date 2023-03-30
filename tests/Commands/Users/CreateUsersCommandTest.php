@@ -16,8 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class CreateUsersCommandTest extends TestCase
 {
-//	 Проверяем, что команда создания пользователя бросает исключение,
-//	 если пользователь с таким именем уже существует
+	//	 Проверяем, что команда создания пользователя бросает исключение, если пользователь с таким именем уже существует
 	public function testItThrowsAnExceptionWhenUserAlreadyExists(): void
 	{
 		// Создаём объект команды
@@ -55,40 +54,7 @@ class CreateUsersCommandTest extends TestCase
 		$commands->handle(new Arguments(['username' => 'user123']));
 	}
 
-	//Тест проверяет, что команда действительно требует имя пользователя
-//	public function testItRequiresFirstName(): void
-//	{
-//		// $usersRepository - это объект анонимного класса,
-//		// реализующего контракт UsersRepositoryInterface
-//		$usersRepository = new class implements UsersRepositoryInterface {
-//			public function save(User $user): void
-//			{
-//				// Ничего не делаем
-//			}
-//
-//			public function get(UUID $uuid): User
-//			{
-//				// И здесь ничего не делаем
-//				throw new UserNotFoundException('Not found');
-//			}
-//
-//			public function getByUsername(string $username): User
-//			{
-//				// И здесь ничего не делаем
-//				throw new UserNotFoundException('Not found');
-//			}
-//		};
-//		// Передаём объект анонимного класса
-//		// в качестве реализации UsersRepositoryInterface
-//		$command = new CreateUserCommand($usersRepository);
-//		// Ожидаем, что будет брошено исключение
-//		$this->expectException(ArgumentsException::class);
-//		$this->expectExceptionMessage('No such argument: first_name');
-//		// Запускаем команду
-//		$command->handle(new Arguments(['username' => 'Login']));
-//	}
-
-// Функция возвращает объект типа UsersRepositoryInterface
+	// Функция возвращает объект типа UsersRepositoryInterface
 	public function makeUsersRepository(): UsersRepositoryInterface
 	{
 		return new class implements UsersRepositoryInterface {
@@ -109,7 +75,6 @@ class CreateUsersCommandTest extends TestCase
 	}
 
 	// Тест проверяет, что команда действительно требует фамилию пользователя
-
 	/**
 	 * @throws CommandException
 	 * @throws InvalidArgumentException
@@ -140,7 +105,6 @@ class CreateUsersCommandTest extends TestCase
 	}
 
 	// Тест, проверяющий, что команда сохраняет пользователя в репозитории MOK
-
 	/**
 	 * @throws ArgumentsException
 	 * @throws CommandException

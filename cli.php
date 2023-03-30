@@ -1,5 +1,7 @@
 <?php
 
+use GeekBrains\LevelTwo\Blog\Models\Comment;
+use GeekBrains\LevelTwo\Blog\Repositories\CommentsRepository\SqliteCommentsRepository;
 use GeekBrains\LevelTwo\Blog\Repositories\UsersRepository\SqliteUsersRepository;
 use GeekBrains\LevelTwo\Blog\UUID;
 use GeekBrains\LevelTwo\Blog\Repositories\PostsRepository\SqlitePostsRepository;
@@ -11,17 +13,17 @@ $connection = new PDO('sqlite:' . __DIR__ . '/blog.sqlite');
 
 $usersRepository = new SqliteUsersRepository($connection);
 $postsRepository = new SqlitePostsRepository($connection);
+$commentsRepository = new SqliteCommentsRepository($connection);
 
 try {
+//$user = $usersRepository->get(new UUID('3b697686-01bf-433a-bf17-53ce84cb987b'));
 
-$user = $usersRepository->get(new UUID('3b697686-01bf-433a-bf17-53ce84cb987b'));
+//$post = $postsRepository->get(new UUID('fb58c755-9413-4945-b1d7-b2bd1979ae34'));
 
-$post = $postsRepository->get(new UUID('fb58c755-9413-4945-b1d7-b2bd1979ae34'));
-
-print_r($post);
+//$comment  = $commentsRepository->get(new UUID('33d458ee-b03c-4358-8663-7757d3179793'));
 
 } catch (Exception $e) {
-    echo $e->getMessage();
+	echo $e->getMessage();
 }
 /*
 $command = new CreateUserCommand($usersRepository);

@@ -3,7 +3,7 @@
 namespace GeekBrains\LevelTwo\Http;
 
 use GeekBrains\LevelTwo\Blog\Exceptions\HttpException\HttpException;
-use GeekBrains\LevelTwo\Blog\Exceptions\JsonException;
+use JsonException;
 
 class Request
 {
@@ -41,7 +41,6 @@ class Request
 		}
 		return $data;
 	}
-
 	// Метод для получения отдельного поля из json-форматированного тела запроса
 	/**
 	 * @throws HttpException
@@ -116,11 +115,12 @@ class Request
 	}
 
 	// Метод для получения значения определённого заголовка
-
+	/**
+	 * @throws HttpException
+	 */
 	public function header(string $header): string
 	{
-		// В суперглобальном массиве $_SERVER
-		// имена заголовков имеют префикс 'HTTP_',
+		// В суперглобальном массиве $_SERVER имена заголовков имеют префикс 'HTTP_',
 		// а знаки подчёркивания заменены на минусы
 		$headerName = mb_strtoupper('http_' . str_replace('-', '_', $header));
 		if (!array_key_exists($headerName, $this->server)) {

@@ -1,29 +1,29 @@
 <?php
 
-namespace Actions;
+namespace Actions\Find;
 
 use GeekBrains\LevelTwo\Blog\Exceptions\InvalidArgumentException;
 use GeekBrains\LevelTwo\Blog\Exceptions\UserException\UserNotFoundException;
 use GeekBrains\LevelTwo\Blog\Models\User;
 use GeekBrains\LevelTwo\Blog\Person\Name;
 use GeekBrains\LevelTwo\Blog\Repositories\Interface\UsersRepositoryInterface;
+use GeekBrains\LevelTwo\Blog\UUID;
 use GeekBrains\LevelTwo\Http\Actions\Users\FindByUsername;
 use GeekBrains\LevelTwo\Http\ErrorResponse;
 use GeekBrains\LevelTwo\Http\Request;
-use GeekBrains\LevelTwo\Blog\UUID;
 use GeekBrains\LevelTwo\Http\SuccessfulResponse;
 use PHPUnit\Framework\TestCase;
 
 class FindByUsernameActionTest extends TestCase
 {
-// Запускаем тест в отдельном процессе
+	// Запускаем тест в отдельном процессе
+
 	/**
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
 	 * @throws \JsonException
 	 */
-	// Тест, проверяющий, что будет возвращён неудачный ответ,
-	// если в запросе нет параметра username
+	// Тест, проверяющий, что будет возвращён неудачный ответ, если в запросе нет параметра username
 	public function testItReturnsErrorResponseIfNoUsernameProvided(): void
 	{
 		// Создаём объект запроса вместо суперглобальных переменных передаём простые массивы
@@ -41,6 +41,7 @@ class FindByUsernameActionTest extends TestCase
 		// Отправляем ответ в поток вывода
 		$response->send();
 	}
+
 	/**
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
@@ -58,6 +59,7 @@ class FindByUsernameActionTest extends TestCase
 		$this->expectOutputString('{"success":false,"reason":"Not found"}');
 		$response->send();
 	}
+
 	/**
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
@@ -82,8 +84,8 @@ class FindByUsernameActionTest extends TestCase
 		$this->expectOutputString('{"success":true,"data":{"username":"ivan","name":"Ivan Nikitin"}}');
 		$response->send();
 	}
-	// Функция, создающая стаб репозитория пользователей,
-	// принимает массив "существующих" пользователей
+
+	// Функция, создающая стаб репозитория пользователей, принимает массив "существующих" пользователей
 	private function usersRepository(array $users): UsersRepositoryInterface
 	{
 		// В конструктор анонимного класса передаём массив пользователей

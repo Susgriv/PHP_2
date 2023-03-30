@@ -7,20 +7,12 @@ use GeekBrains\LevelTwo\Blog\UUID;
 
 class User
 {
-	private UUID $uuid;
-	private Name $name;
-	private string $username;
-
-	/**
-	 * @param UUID $uuid
-	 * @param Name $name
-	 * @param string $login
-	 */
-	public function __construct(UUID $uuid, Name $name, string $login)
+	public function __construct(
+		private UUID $uuid,
+		private Name $name,
+		private string $username
+	)
 	{
-		$this->uuid = $uuid;
-		$this->name = $name;
-		$this->username = $login;
 	}
 
 	public function __toString()

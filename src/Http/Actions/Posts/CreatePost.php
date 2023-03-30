@@ -56,7 +56,6 @@ class CreatePost implements ActionInterface
         return new SuccessfulResponse([
             'post id' => (string)$newPostUuid,
 	        'author id' => (string)$authorUuid,
-
         ]);
     }
 }

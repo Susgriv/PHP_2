@@ -57,7 +57,7 @@ class SqlitePostsRepositoryTest extends TestCase
 			static::once())
 			->method('execute')
 			->with([
-				':uuid' => 'd2206efb-6e63-42a0-9f5d-196efa027725',
+				':uuid' => 'a91a2f35-a123-42e6-a90b-84450f7769d9',
 				':author_uuid' => 'f2206efb-6e63-42a0-9f5d-196efa027725',
 				':title' => 'title',
 				':text' => 'text',
@@ -71,8 +71,9 @@ class SqlitePostsRepositoryTest extends TestCase
 		);
 		$repository->save(
 			new Post(
-				new UUID('d2206efb-6e63-42a0-9f5d-196efa027725'),
-				$user,
+			// Свойства пользователя точно такие, как и в описании мока
+				new UUID('a91a2f35-a123-42e6-a90b-84450f7769d9'),
+				$user->uuid(),
 				'title',
 				'text',
 			),

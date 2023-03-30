@@ -18,7 +18,6 @@ abstract class Response
 	public function send(): void
 	{
 		// Данные ответа:
-
 		// маркировка успешности и полезные данные
 		$data = ['success' => static::SUCCESS] + $this->payload();
 		// Отправляем заголовок, говорящий, что в теле ответа будет JSON

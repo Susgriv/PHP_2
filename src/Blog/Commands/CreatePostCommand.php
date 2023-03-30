@@ -12,11 +12,10 @@ use GeekBrains\LevelTwo\Blog\UUID;
 
 class CreatePostCommand
 {
-	private PostsRepositoryInterface $postRepository;
-
-	public function __construct(PostsRepositoryInterface $postRepository)
+	public function __construct(
+		private PostsRepositoryInterface $postRepository
+	)
 	{
-		$this->postRepository = $postRepository;
 	}
 
 	/**

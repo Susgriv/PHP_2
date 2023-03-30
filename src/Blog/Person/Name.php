@@ -6,16 +6,11 @@ use GeekBrains\LevelTwo\Blog\Models\User;
 
 class Name extends User
 {
-  private string $firstname, $lastname;
-
-  /**
-   * @param string $firstname
-   * @param string $lastname
-   */
-  public function __construct(string $firstname, string $lastname)
+  public function __construct(
+	  private string $firstname,
+	  private string $lastname
+  )
   {
-    $this->firstname = $firstname;
-    $this->lastname = $lastname;
   }
 
   /**

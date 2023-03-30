@@ -3,8 +3,10 @@
 
 use GeekBrains\LevelTwo\Blog\Exceptions\AppException;
 use GeekBrains\LevelTwo\Blog\Exceptions\HttpException\HttpException;
+use GeekBrains\LevelTwo\Blog\Repositories\CommentsRepository\SqliteCommentsRepository;
 use GeekBrains\LevelTwo\Blog\Repositories\PostsRepository\SqlitePostsRepository;
 use GeekBrains\LevelTwo\Blog\Repositories\UsersRepository\SqliteUsersRepository;
+use GeekBrains\LevelTwo\Http\Actions\Comments\CreateComment;
 use GeekBrains\LevelTwo\Http\Actions\Posts\CreatePost;
 use GeekBrains\LevelTwo\Http\Actions\Users\CreateUser;
 use GeekBrains\LevelTwo\Http\Actions\Users\FindByUsername;
@@ -61,6 +63,17 @@ $routes = [
 				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
 			),
 			new SqliteUsersRepository(
+				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
+			)
+		),
+		'/comments/create' => new CreateComment(
+			new SqlitePostsRepository(
+				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
+			),
+			new SqliteUsersRepository(
+				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
+			),
+			new SqliteCommentsRepository(
 				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
 			)
 		),

@@ -15,33 +15,21 @@ class Comment
 	{
 	}
 
-	/**
-	 * @return UUID
-	 */
 	public function getComment_uuid(): UUID
 	{
 		return $this->uuid;
 	}
 
-	/**
-	 * @return Post
-	 */
 	public function getPostUuid(): Post
 	{
 		return $this->postUuid;
 	}
 
-	/**
-	 * @return User
-	 */
 	public function getAuthorUuid(): User
 	{
 		return $this->post_author_uuid;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getTextComment(): string
 	{
 		return $this->textComment;

@@ -12,8 +12,7 @@ class ErrorResponse extends Response
 	)
 	{
 	}
-	// Реализация абстрактного метода
-	// родительского класса
+	// Реализация абстрактного метода родительского класса
 	protected function payload(): array
 	{
 		return ['reason' => $this->reason];

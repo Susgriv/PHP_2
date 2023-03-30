@@ -31,7 +31,7 @@ class SqliteCommentsRepository implements CommentsRepositoryInterface
 		$statement->execute([
 			':uuid' => $comments->getComment_uuid(),
 			':post_uuid' => $comments->getPostUuid()->getPost_uuid(),
-			':author_uuid' => $comments->getAuthorUuid()->uuid(),
+			':author_uuid' => $comments->getAuthorUuid(),
 			':text' => $comments->getTextComment(),
 		]);
 	}
@@ -66,14 +66,16 @@ class SqliteCommentsRepository implements CommentsRepositoryInterface
 	public function getComment(PDOStatement $statement, string $errorComment): Comment
 	{
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
+		print_r($result);
 		if ($result === false) {
 			throw new CommentNotFoundException("Not comments: $errorComment\n");
 		}
-		$postRepository = new SqlitePostsRepository($this->connection);
-		$commentsGetUser = new SqliteUsersRepository($this->connection);
 
+		$postRepository = new SqlitePostsRepository($this->connection);
 		$commentPost = $postRepository->get(new UUID($result['post_uuid']));
-		$commentUser = $commentsGetUser->get(new UUID($result['author_uuid']));
+
+		$commentsRepository = new SqliteUsersRepository($this->connection);
+		$commentUser = $commentsRepository->get(new UUID($result['author_uuid']));
 
 		return new Comment(
 			new UUID($result['uuid']),
